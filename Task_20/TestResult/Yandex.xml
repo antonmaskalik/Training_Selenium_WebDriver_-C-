@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<test-run id="0" name="Yandex.dll" fullname="C:\Users\antonmaskalik\Desktop\Tasks for Training Center\Tasks for Selenium Savenok\Training_Selenium_WebDriver_CSharp\Task_20\bin\Debug\net5.0\Yandex.dll" runstate="Runnable" testcasecount="1" result="Passed" total="1" passed="1" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="1" engine-version="3.13.2.0" clr-version="5.0.14" start-time="2022-04-08 12:18:22Z" end-time="2022-04-08 12:18:28Z" duration="5.324590">
+  <command-line><![CDATA["C:\Users\antonmaskalik\Desktop\Tasks for Training Center\Tasks for Selenium Savenok\Training_Selenium_WebDriver_CSharp\Task_20\bin\Debug\net5.0\testhost.dll" --port 52446 --endpoint 127.0.0.1:052446 --role client --parentprocessid 15344 --telemetryoptedin false]]></command-line>
+  <test-suite type="Assembly" id="0-1003" name="Yandex.dll" fullname="C:/Users/antonmaskalik/Desktop/Tasks for Training Center/Tasks for Selenium Savenok/Training_Selenium_WebDriver_CSharp/Task_20/bin/Debug/net5.0/Yandex.dll" runstate="Runnable" testcasecount="1" result="Passed" start-time="2022-04-08T12:18:22.7184692Z" end-time="2022-04-08T12:18:28.0286350Z" duration="5.310107" total="1" passed="1" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="1">
+    <environment framework-version="3.13.3.0" clr-version="5.0.14" os-version="Microsoft Windows 10.0.19044" platform="Win32NT" cwd="C:\Users\antonmaskalik\Desktop\Tasks for Training Center\Tasks for Selenium Savenok\Training_Selenium_WebDriver_CSharp\Task_20\bin\Debug\net5.0" machine-name="MSQ-NBW-4347" user="AntonMaskalik" user-domain="BY-MINSK" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="SynchronousEvents" value="False" />
+      <setting name="RandomSeed" value="1678861475" />
+      <setting name="SkipNonTestAssemblies" value="True" />
+      <setting name="ProcessModel" value="InProcess" />
+      <setting name="DomainUsage" value="Single" />
+      <setting name="DefaultTestNamePattern" value="{m}{a}" />
+      <setting name="WorkDirectory" value="C:\Users\antonmaskalik\Desktop\Tasks for Training Center\Tasks for Selenium Savenok\Training_Selenium_WebDriver_CSharp\Task_20\bin\Debug\net5.0" />
+      <setting name="NumberOfTestWorkers" value="8" />
+    </settings>
+    <properties>
+      <property name="_PID" value="5512" />
+      <property name="_APPDOMAIN" value="testhost" />
+    </properties>
+    <test-suite type="TestSuite" id="0-1004" name="Yandex" fullname="Yandex" runstate="Runnable" testcasecount="1" result="Passed" start-time="2022-04-08T12:18:22.7226040Z" end-time="2022-04-08T12:18:28.0286258Z" duration="5.306016" total="1" passed="1" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="1">
+      <test-suite type="TestFixture" id="0-1000" name="YndexTest" fullname="Yandex.YndexTest" classname="Yandex.YndexTest" runstate="Runnable" testcasecount="1" result="Passed" start-time="2022-04-08T12:18:22.7238290Z" end-time="2022-04-08T12:18:28.0285712Z" duration="5.304738" total="1" passed="1" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="1">
+        <test-suite type="ParameterizedMethod" id="0-1002" name="SignInTest" fullname="Yandex.YndexTest.SignInTest" classname="Yandex.YndexTest" runstate="Runnable" testcasecount="1" result="Passed" start-time="2022-04-08T12:18:22.7259147Z" end-time="2022-04-08T12:18:27.9171821Z" duration="5.191263" total="1" passed="1" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="1">
+          <test-case id="0-1001" name="SignInTest(&quot;WebDriverCSharp&quot;,&quot;Selenium&quot;)" fullname="Yandex.YndexTest.SignInTest(&quot;WebDriverCSharp&quot;,&quot;Selenium&quot;)" methodname="SignInTest" classname="Yandex.YndexTest" runstate="Runnable" seed="1833591790" result="Passed" start-time="2022-04-08T12:18:22.7259917Z" end-time="2022-04-08T12:18:27.9141063Z" duration="5.188228" asserts="1" />
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
