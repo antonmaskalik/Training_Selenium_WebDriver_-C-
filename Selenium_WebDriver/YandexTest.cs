@@ -4,7 +4,7 @@ using Yandex.Pages;
 namespace Yandex
 {
     [TestFixture]
-    public class YndexTest: BaseTest
+    public class YandexTest: BaseTest
     {
         const string USER_NAME = "WebDriverCSharp";
         const string PASSWORD = "Selenium";
