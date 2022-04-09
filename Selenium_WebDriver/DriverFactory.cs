@@ -4,11 +4,11 @@ using System;
 
 namespace Yandex
 {
-    public static class DriverFactory
+    public class DriverFactory
     {
-        static IWebDriver _driver = null;
+        IWebDriver _driver = null;
 
-        public static IWebDriver InitDriver()
+        public IWebDriver InitDriver()
         {
             if (_driver == null)
             {

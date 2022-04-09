@@ -26,9 +26,9 @@ namespace Yandex.Pages
             }
         }
 
-        public void WaitElement(By element)
+        public void WaitElement(By element, TimeSpan time)
         {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            WebDriverWait wait = new WebDriverWait(driver, time);
             wait.Until(e => IsElementVisible(element));
         }
     }
