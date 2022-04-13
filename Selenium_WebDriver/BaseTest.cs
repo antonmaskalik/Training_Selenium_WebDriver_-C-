@@ -1,26 +1,22 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 
-namespace Yandex
+namespace Selenium_WebDriver
 {
     public class BaseTest
     {
         protected IWebDriver driver;
         DriverFactory driverFactory;
 
-        public BaseTest()
-        {
-            driverFactory= new DriverFactory();
-        }
-
         [SetUp]
         public void SetUp()
-        {     
-            driver = driver = driverFactory.InitDriver();
+        {
+            driverFactory = new DriverFactory();
+            driver = driverFactory.InitDriver();
         }
 
         [TearDown]
-        public void OneTimeTearDown()
+        public void TearDown()
         {
             driver.Quit();
         }

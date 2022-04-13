@@ -1,8 +1,9 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.PageObjects;
 using System;
 
-namespace Yandex.Pages
+namespace Selenium_WebDriver.Pages
 {
     public class BasePage
     {
@@ -11,6 +12,7 @@ namespace Yandex.Pages
         public BasePage(IWebDriver driver)
         {
             this.driver = driver;
+            PageFactory.InitElements(driver, this);
         }
 
         public bool IsElementVisible(By searchElementBy)
@@ -26,9 +28,15 @@ namespace Yandex.Pages
             }
         }
 
-        public void WaitElement(By element, TimeSpan time)
+        public void WaitElement(By element, TimeSpan timeout, TimeSpan? intervalTime = null)
         {
-            WebDriverWait wait = new WebDriverWait(driver, time);
+            WebDriverWait wait = new WebDriverWait(driver, timeout);
+            
+            if(intervalTime != null)
+            {
+                wait.PollingInterval = (TimeSpan)intervalTime;
+            }
+
             wait.Until(e => IsElementVisible(element));
         }
     }
