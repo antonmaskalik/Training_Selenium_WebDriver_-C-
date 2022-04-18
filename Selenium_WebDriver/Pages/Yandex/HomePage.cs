@@ -8,7 +8,9 @@ namespace Selenium_WebDriver.Pages.Yandex
         const string URL = "https://yandex.by/";
         const int TIMEOUT = 10;
         private By _signInBtn = By.XPath("//*[contains(@class, 'home-link_hover_inherit')]");
-        private By _userName = By.XPath("//*[@class='username desk-notif-card__user-name']");
+        private By _signOutBtn = By.CssSelector("[data-statlog='mail.login.usermenu.exit']");
+        private By _userName = By.XPath("//*[@class='username desk-notif-card__user-name']");       
+       
 
         public HomePage(IWebDriver driver): base(driver) { }
 
@@ -22,11 +24,22 @@ namespace Selenium_WebDriver.Pages.Yandex
             driver.FindElement(_signInBtn).Click();
         }
 
+        public void ClickSignOutBtn()
+        {
+            driver.FindElement(_userName).Click();
+            driver.FindElement(_signOutBtn).Click();
+        }
+
         public bool IsUserLoggedIn(string userName)
         {
             WaitElement(_userName, TimeSpan.FromSeconds(TIMEOUT));
 
-            return driver.FindElement(_userName).Text.Equals(userName);
+            return userName.Contains(driver.FindElement(_userName).Text);
+        }
+
+        public bool IsUserLoggedOut()
+        {
+            return IsElementVisible(_signInBtn);
         }
     }
 }

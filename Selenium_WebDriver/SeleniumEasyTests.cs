@@ -83,7 +83,6 @@ namespace Selenium_WebDriver
             Assert.IsTrue(getNewUserPage.IsUserDisplayed(), "User was not display");
         }
 
-
         [TestCase(PROGRESS_PERCENTAGES)]
         public void ProgressBarTest(int progressPercentages)
         {
