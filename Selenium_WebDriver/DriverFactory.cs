@@ -2,7 +2,7 @@
 using OpenQA.Selenium.Chrome;
 using System;
 
-namespace Yandex
+namespace Selenium_WebDriver
 {
     public class DriverFactory
     {
