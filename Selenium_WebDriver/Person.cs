@@ -3,22 +3,22 @@ namespace Selenium_WebDriver
 {
     public class Person
     {
-        private readonly string name;
-        private readonly string position;
-        private readonly string office;
-        private readonly int age;
-        private readonly int salary;
+        private readonly string NAME;
+        private readonly string POSITION;
+        private readonly string OFFICE;
+        private readonly int AGE;
+        private readonly int SALARY;
 
-        public int Age { get { return age; } }
-        public int Salary { get { return salary; } }
+        public int Age { get { return AGE; } }
+        public int Salary { get { return SALARY; } }
 
         public Person(string name, string position, string office, int age, int salary)
         {
-            this.name = name;
-            this.position = position;
-            this.office = office;
-            this.age = age;
-            this.salary = salary;
+            NAME = name;
+            POSITION = position;
+            OFFICE = office;
+            AGE = age;
+            SALARY = salary;
         }
     }
 }
