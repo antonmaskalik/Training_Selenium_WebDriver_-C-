@@ -4,7 +4,7 @@ using System;
 using System.IO;
 using Allure.Commons;
 using NUnit.Allure.Core;
-using NUnit.Allure.Attributes;
+using Selenium_WebDriver.Enums;
 
 namespace Selenium_WebDriver
 {
@@ -22,7 +22,7 @@ namespace Selenium_WebDriver
         public void SetUp()
         {
             driverFactory = new DriverFactory();
-            driver = driverFactory.InitDriver();
+            driver = driverFactory.InitDriver(false, Browser.Chrome, OSVersion.Windows10);
         }
 
         [TearDown]
