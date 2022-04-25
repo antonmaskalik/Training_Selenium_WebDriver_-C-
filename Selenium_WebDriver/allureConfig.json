@@ -49,8 +49,6 @@
   "environment": {
     "runtime": [
       {
-        "OS": "Windows 10",
-        "Browser": "Chrome",
         "AllureVersion": "Allure.Commons.AllureLifecycle.AllureVersion"
       }
     ]
