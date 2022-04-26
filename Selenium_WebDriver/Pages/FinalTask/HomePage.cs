@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
 using System;
+using System.Collections.Generic;
 
 namespace Selenium_WebDriver.Pages.FinalTask
 {
@@ -38,38 +39,61 @@ namespace Selenium_WebDriver.Pages.FinalTask
             }
         }
 
-        public void OpenProduct(string productName)
+        public void OpenProducts(IEnumerable<string> productNames, bool addToCart, bool addToWishlist)
         {
-            IWebElement product = driver.FindElement(By.XPath(string.Format(_productFormat, productName)));
-            product.Click();
+            foreach (string name in productNames)
+            {
+                IWebElement product = driver.FindElement(By.XPath(string.Format(_productFormat, name)));
+                product.Click();
+
+                if (addToCart)
+                {
+                    AddToCard();
+                }
+                if (addToWishlist)
+                {
+                    AddToWishlist();
+                }
+            }
         }
 
-        public void AddToWishlist()
+        private void AddToWishlist()
         {
-            driver.SwitchTo().Frame(driver.FindElement(_deatailBoxFrame));
-
-            _addToWishlistBtn.Click();
-
-            CloseFrame();
+            if (IsFrameOpened())
+            {
+                driver.SwitchTo().Frame(driver.FindElement(_deatailBoxFrame));
+                _addToWishlistBtn.Click();
+                CloseFrame();
+            }
+            else
+            {
+                ProductPage productPage = new ProductPage(driver);
+                productPage.AddToWishlist();
+                GoToHomePage();
+            }
         }
 
-        public void AddToCard()
+        private void AddToCard()
         {
-            SwitchToFrame(_deatailBoxFrame);
-
-            _addToCartBtn.Click();
-
-            SwitchToDefaultContent();
-
-            _continueShoppingBtn.Click();
+            if (IsFrameOpened())
+            {
+                SwitchToFrame(_deatailBoxFrame);
+                _addToCartBtn.Click();
+                SwitchToDefaultContent();
+                _continueShoppingBtn.Click();
+            }
+            else
+            {
+                ProductPage productPage = new ProductPage(driver);
+                productPage.AddToCard();
+                GoToHomePage();
+            }
         }
 
         private void CloseFrame()
         {
             _closeFrameBtn.Click();
-
             SwitchToDefaultContent();
-
             _closeFrameBtn.Click();
         }
     }

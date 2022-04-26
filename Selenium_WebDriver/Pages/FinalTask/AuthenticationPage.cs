@@ -87,21 +87,21 @@ namespace Selenium_WebDriver.Pages.FinalTask
             _createAccountBtn.Click();
         }      
 
-        public void Registration(string fName, string lName, string password, string address, string city, string state, string zipCode, string country, string phone)
+        public void Registration(Member member)
         {
-            _firstNameInput.SendKeys(fName);
-            _lastNameInput.SendKeys(lName);
-            _passwordInput.SendKeys(password);
-            _addressInput.SendKeys(address);
-            _cityInput.SendKeys(city);
-            _zipCodeInput.SendKeys(zipCode);
-            _phoneInput.SendKeys(phone);
+            _firstNameInput.SendKeys(member.FirstName);
+            _lastNameInput.SendKeys(member.LastName);
+            _passwordInput.SendKeys(member.Password);
+            _addressInput.SendKeys(member.Address);
+            _cityInput.SendKeys(member.City);
+            _zipCodeInput.SendKeys(member.ZipCode);
+            _phoneInput.SendKeys(member.Phone);
 
             SelectElement stateElement = new SelectElement(_stateSelect);
-            stateElement.SelectByText(state);
+            stateElement.SelectByText(member.State);
 
             SelectElement countryElement = new SelectElement(_countrySelect);
-            countryElement.SelectByText(country);
+            countryElement.SelectByText(member.Country);
 
             _registerBtn.Click();
         }

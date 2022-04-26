@@ -23,7 +23,7 @@ namespace Selenium_WebDriver
         public void OneTimeSetUp()
         {
             driverFactory = new DriverFactory();
-            driver = driverFactory.InitDriver(TestsRunMethod.Selenoid, Browser.Chrome, OSVersion.Windows8_1);
+            driver = driverFactory.InitDriver(TestsRunMethod.Locally, Browser.Chrome, OSVersion.Windows8_1);
         }
 
         [OneTimeTearDown]

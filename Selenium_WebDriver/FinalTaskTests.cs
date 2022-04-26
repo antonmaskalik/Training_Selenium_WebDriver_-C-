@@ -11,16 +11,7 @@ namespace Selenium_WebDriver
     {
         const string EMAIL = "anton.maskalik@gmail.com";
         const string PASSWORD = "12345";
-        const string PRODUCT_NAME = "Blouse";
         const string WISH_LIST_NAME = "New Wishlist";
-        const string FIRST_NAME = "Ivan";
-        const string LAST_NAME = "Ivanov";
-        const string ADDRESS = "Lenina 10, 25, Gucci";
-        const string CITY = "Maimi";
-        const string STATE = "Florida";
-        const string ZIP_CODE = "00000";
-        const string COUNTRY = "United States";
-        const string PHONE = "258262485428";
 
         List<string> _productsAddToCart = new List<string>() { "Blouse", "Printed Dress", "Printed Summer Dress" };
         List<string> _productsAddToWishlists = new List<string>() { "Blouse" };
@@ -39,12 +30,12 @@ namespace Selenium_WebDriver
             MyWishlistPage myWishlistPage = new MyWishlistPage(driver);
             myWishlistPage.RemoveWishlists();
 
-            headerPage.SingOut();            
+            headerPage.SingOut();
         }
 
         [AllureName("Verifies create account")]
-        [TestCase(FIRST_NAME, LAST_NAME, PASSWORD, ADDRESS, CITY, STATE, ZIP_CODE, COUNTRY, PHONE)]
-        public void CreateAccountTest(string fName, string lName, string password, string address, string city, string state, string zipCode, string country, string phone)
+        [Test]
+        public void CreateAccountTest()
         {
             AuthenticationPage authenticationPage = new AuthenticationPage(driver);
             authenticationPage.GoToUrl();
@@ -53,7 +44,8 @@ namespace Selenium_WebDriver
 
             Assert.IsTrue(authenticationPage.IsAccountCreated(), "{0} is invalid email address", email);
 
-            authenticationPage.Registration(fName, lName, password, address, city, state, zipCode, country, phone);
+            Member member = new Member();
+            authenticationPage.Registration(member);
 
             MyAccountPage myAccountPage = new MyAccountPage(driver);
 
@@ -91,23 +83,13 @@ namespace Selenium_WebDriver
             myWishlistPage.GoToHomePage();
 
             HomePage homePage = new HomePage(driver);
-            homePage.OpenProduct(PRODUCT_NAME);
-
-            if (homePage.IsFrameOpened())
-            {
-                homePage.AddToWishlist();
-            }
-            else
-            {
-                ProductPage productPage = new ProductPage(driver);
-                productPage.AddToWishlist();
-            }
+            homePage.OpenProducts(_productsAddToWishlists, false, true);
 
             HeaderPage headerPage = new HeaderPage(driver);
             headerPage.GoToMyAccount();
             myAccountPage.GoToMyWishlist();
 
-            Assert.IsTrue(myWishlistPage.DoesWishlistContainProducts(_productsAddToWishlists), "Wishlist doesn't contain {0}", PRODUCT_NAME);
+            Assert.IsTrue(myWishlistPage.DoesWishlistContainProducts(_productsAddToWishlists), "Wishlist doesn't contain these products");
         }
 
         [AllureName("Verifies create new wishlist")]
@@ -129,23 +111,16 @@ namespace Selenium_WebDriver
             myWishlistPage.GoToHomePage();
 
             HomePage homePage = new HomePage(driver);
-            homePage.OpenProduct(PRODUCT_NAME);
+            homePage.OpenProducts(_productsAddToWishlists, false, true);
 
-            if (homePage.IsFrameOpened())
-            {
-                homePage.AddToWishlist();
-            }
-            else
-            {
-                ProductPage productPage = new ProductPage(driver);
-                productPage.AddToWishlist();
-            }
+            ProductPage productPage = new ProductPage(driver);
+            productPage.AddToWishlist();
 
             HeaderPage headerPage = new HeaderPage(driver);
             headerPage.GoToMyAccount();
             myAccountPage.GoToMyWishlist();
 
-            Assert.IsTrue(myWishlistPage.DoesWishlistContainProducts(_productsAddToWishlists), "{0} doesn't contain {1}", WISH_LIST_NAME, PRODUCT_NAME);
+            Assert.IsTrue(myWishlistPage.DoesWishlistContainProducts(_productsAddToWishlists), "{0} doesn't contain these products", WISH_LIST_NAME);
         }
 
         [AllureName("Verifies add to cart")]
@@ -160,24 +135,9 @@ namespace Selenium_WebDriver
             headerPage.GoToHomePage();
 
             HomePage homePage = new HomePage(driver);
-
-            foreach (string product in _productsAddToCart)
-            {
-                homePage.OpenProduct(product);
-
-                if (homePage.IsFrameOpened())
-                {
-                    homePage.AddToCard();
-                }
-                else
-                {
-                    ProductPage productPage = new ProductPage(driver);
-                    productPage.AddToCard();
-                    headerPage.GoToHomePage();
-                }
-            }
-
+            homePage.OpenProducts(_productsAddToCart, true, false);
             headerPage.GoToCart();
+
             CartPage cartpage = new CartPage(driver);
 
             Assert.IsTrue(cartpage.DoesCartContainProductNames(_productsAddToCart), "The Cart doesn't contain all product names");
