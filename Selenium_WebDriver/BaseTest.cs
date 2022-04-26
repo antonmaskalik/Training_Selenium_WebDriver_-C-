@@ -5,6 +5,7 @@ using System.IO;
 using Allure.Commons;
 using NUnit.Allure.Core;
 using Selenium_WebDriver.Enums;
+using NUnit.Framework.Interfaces;
 
 namespace Selenium_WebDriver
 {
@@ -13,31 +14,36 @@ namespace Selenium_WebDriver
     {
         const string SCREENSHOTS_FOLDER = "..\\..\\..\\Screenshots";
         const string SCREENSHOT_NAME = "Screenshot_";
-        const string JPG = ".jpg";
+        const string PNG = ".png";
         readonly string PATH_TO_SCREENSHOTS_FOLDER = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, SCREENSHOTS_FOLDER);
         protected IWebDriver driver;
-        DriverFactory driverFactory;
+        DriverFactory driverFactory;       
 
-        [SetUp]
-        public void SetUp()
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
         {
             driverFactory = new DriverFactory();
-            driver = driverFactory.InitDriver(false, Browser.Chrome, OSVersion.Windows10);
+            driver = driverFactory.InitDriver(TestsRunMethod.Locally, Browser.Chrome, OSVersion.Windows8_1);
         }
 
-        [TearDown]
-        public void TearDown()
+        [OneTimeTearDown]
+        public void OneTimeTearDown()
         {
             driver.Quit();
         }
 
         public void TakeScreenshot()
         {
-            Directory.CreateDirectory(PATH_TO_SCREENSHOTS_FOLDER);
-            string pathToScreenshots = Path.Combine(PATH_TO_SCREENSHOTS_FOLDER, SCREENSHOT_NAME + TestContext.CurrentContext.Test.MethodName + JPG);
+            if (TestContext.CurrentContext.Result.Outcome != ResultState.Success)
+            {
+                Screenshot screenshot = ((ITakesScreenshot)driver).GetScreenshot();
+                string filename = TestContext.CurrentContext.Test.MethodName + SCREENSHOT_NAME + DateTime.Now.Ticks + PNG;
+                string path = PATH_TO_SCREENSHOTS_FOLDER + filename;
 
-            Screenshot screenshot = (driver as ITakesScreenshot).GetScreenshot();
-            screenshot.SaveAsFile(pathToScreenshots, ScreenshotImageFormat.Jpeg);
+                screenshot.SaveAsFile(path, ScreenshotImageFormat.Jpeg);
+                TestContext.AddTestAttachment(path);
+                AllureLifecycle.Instance.AddAttachment(filename, PNG, path);
+            }
         }
 
         [OneTimeSetUp]
